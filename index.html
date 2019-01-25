@@ -49,10 +49,10 @@ $(document).ready(function() {
     var x = evt.pageX - $('#body').offset().left - mid_x;
     var y = evt.pageY - $('#body').offset().top - mid_y;
 
-    // max 100 % turn?
+    // max 200% rotation
     // compute rotation
-    var x_rot = parseFloat((y / height) * 100).toFixed(2);
-    var y_rot = parseFloat((x / width) * 100).toFixed(2);
+    var x_rot = parseFloat((y / mid_y) * 200).toFixed(2);
+    var y_rot = parseFloat((x / mid_x) * 200).toFixed(2);
 
     // apply style
     $("#text").css("transform", "rotateY(" + y_rot + "deg) rotateX(" + x_rot + "deg)");
