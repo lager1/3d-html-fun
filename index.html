@@ -49,17 +49,13 @@ $(document).ready(function() {
     var x = evt.pageX - $('#body').offset().left - mid_x;
     var y = evt.pageY - $('#body').offset().top - mid_y;
 
-    //console.log(width, x);
-
     // max 100 % turn?
     // compute rotation
     var x_rot = parseFloat((y / height) * 100).toFixed(2);
     var y_rot = parseFloat((x / width) * 100).toFixed(2);
-    //console.log(x_rot);
 
     // apply style
     $("#text").css("transform", "rotateY(" + y_rot + "deg) rotateX(" + x_rot + "deg)");
-    //$("#text").css("transform", "rotateY(" + y_rot + "deg)");
   });
 
 });
