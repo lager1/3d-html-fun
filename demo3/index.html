@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  html {
+    min-width: 100%;
+    min-height: 100%;
+  }
+  body {
+    background: black;
+    -webkit-perspective: 1000px;
+    margin: 0px 0px 0px;
+  }
+  #cube_test {
+    -webkit-perspective: 4000px;
+  }
+  #side1 {
+    background: rgb(48, 48, 48);
+    border: 1px solid #ccc;
+    height: 300px;
+    width: 300px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: 340px;
+    margin-left: -225px;
+    font-size: 50px;
+    font-family: monospace;
+    color: white;
+    text-align: center;
+    transform: rotateY(0deg) rotateX(0deg);
+  }
+  #side2 {
+    background: rgb(48, 48, 48);
+    border: 1px solid #ccc;
+    height: 300px;
+    width: 300px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: 340px;
+    margin-left: -75px;
+    font-size: 50px;
+    font-family: monospace;
+    color: white;
+    text-align: center;
+    transform: rotateY(85deg) rotateX(0deg);
+  }
+  #side3 {
+    background: rgb(48, 48, 48);
+    border: 1px solid #ccc;
+    height: 300px;
+    width: 300px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: 340px;
+    margin-left: -275px;
+    font-size: 50px;
+    font-family: monospace;
+    color: white;
+    text-align: center;
+    transform: rotateY(-45deg) rotateX(0deg);
+  }
+  #side4 {
+    background: rgb(48, 48, 48);
+    border: 1px solid #ccc;
+    height: 300px;
+    width: 300px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: 340px;
+    margin-left: -275px;
+    font-size: 50px;
+    font-family: monospace;
+    color: white;
+    text-align: center;
+    transform: rotateY(0deg) rotateX(45deg);
+  }
+  #side5 {
+    background: rgb(48, 48, 48);
+    border: 1px solid #ccc;
+    height: 300px;
+    width: 300px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: 340px;
+    margin-left: -275px;
+    font-size: 50px;
+    font-family: monospace;
+    color: white;
+    text-align: center;
+    transform: rotateY(0deg) rotateX(-45deg);
+  }
+  #side6 {
+    background: rgb(48, 48, 48);
+    border: 1px solid #ccc;
+    height: 300px;
+    width: 300px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: 340px;
+    margin-left: -275px;
+    font-size: 50px;
+    font-family: monospace;
+    color: white;
+    text-align: center;
+    transform: rotateY(-45deg) rotateX(-45deg);
+  }
+  a {
+    position: relative;
+    top: 44%;
+    left: 0%;
+  }
+</style>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script>
+$(document).ready(function() {
+  var width = $(window).width();
+  var height = $(window).height();
+
+  var mid_x = width / 2;
+  var mid_y = height / 2;
+
+  var side1_margin_base = -225;
+  var side2_margin_base = -75;
+
+  var side2_base_x = parseFloat(0.0);
+  var side2_base_y = parseFloat(85.0);
+
+  $('html').mousemove(function(evt) {
+    // top left page corner is set up as (0, 0)
+    // use computed mid x/y to compensate for it
+
+    var left_offset =  evt.pageX - $('#body').offset().left;
+
+    var x = left_offset - mid_x;
+    var y = evt.pageY - $('#body').offset().top - mid_y;
+
+    // max 200% rotation
+    // compute rotation
+    var x_rot = parseFloat((y / mid_y) * 200).toFixed(2);
+    var y_rot = parseFloat((x / mid_x) * 200).toFixed(2);
+
+    //console.log(side1_margin_base + left_offset - mid_x);
+
+    // apply style
+    $("#side1").css("transform", "rotateY(" + y_rot + "deg) rotateX(" + x_rot + "deg)");
+    $("#side1").css("margin-left", side1_margin_base + parseFloat((left_offset - mid_x) / 8));		// divide by 8 to reduce range
+    $("#side2").css("transform", "rotateY(" + (parseFloat(side2_base_y) + parseFloat(y_rot)) + "deg) rotateX(" + (parseFloat(side2_base_x) + parseFloat(x_rot)) + "deg)");
+    $("#side2").css("margin-left", side2_margin_base + parseFloat((left_offset - mid_x) / 8));		// divide by 8 to reduce range
+    //$("#text").css("transform", "rotateY(" + y_rot + "deg) rotateX(" + x_rot + "deg)");
+  });
+});
+</script>
+</head>
+<body id="body">
+  <div id="cube">
+    <div id="side1">
+      <a>1</a>
+    </div>
+  <div id="cube_test">
+    <div id="side2">
+      <a>2</a>
+    </div>
+  </div>
+<!--
+    <div id="side3">
+      <a>3</a>
+    </div>
+    <div id="side4">
+      <a>4</a>
+    </div>
+    <div id="side5">
+      <a>5</a>
+    </div>
+    <div id="side6">
+      <a>6</a>
+-->
+    </div>
+  </div>
+</body>
+</html>
